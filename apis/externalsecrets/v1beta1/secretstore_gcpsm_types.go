@@ -34,6 +34,9 @@ type GCPSMAuthSecretRef struct {
 type GCPWorkloadIdentity struct {
 	// +kubebuilder:validation:Required
 	ServiceAccountRef esmeta.ServiceAccountSelector `json:"serviceAccountRef"`
+
+	PoolID     string `json:"poolID,omitempty"`
+	ProviderID string `json:"providerID,omitempty"`
 	// ClusterLocation is the location of the cluster
 	// If not specified, it fetches information from the metadata server
 	// +optional

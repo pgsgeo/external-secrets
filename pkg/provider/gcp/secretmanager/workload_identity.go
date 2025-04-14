@@ -161,9 +161,15 @@ func (w *workloadIdentity) TokenSource(ctx context.Context, auth esv1beta1.GCPSM
 		return nil, err
 	}
 
-	idPool, idProvider, err := w.gcpWorkloadIdentity(ctx, wi)
-	if err != nil {
-		return nil, fmt.Errorf(errLookupIdentity, err)
+	var idPool, idProvider string
+	if wi.PoolID != "" && wi.ProviderID != "" {
+		idPool = wi.PoolID
+		idProvider = wi.ProviderID
+	} else {
+		idPool, idProvider, err = w.gcpWorkloadIdentity(ctx, wi)
+		if err != nil {
+			return nil, fmt.Errorf(errLookupIdentity, err)
+		}
 	}
 
 	audiences := []string{idPool}

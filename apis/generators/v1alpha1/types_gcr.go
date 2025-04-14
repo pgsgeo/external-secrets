@@ -42,6 +42,8 @@ type GCPSMAuthSecretRef struct {
 
 type GCPWorkloadIdentity struct {
 	ServiceAccountRef esmeta.ServiceAccountSelector `json:"serviceAccountRef"`
+	PoolID            string                        `json:"poolID,omitempty"`
+	ProviderID        string                        `json:"providerID,omitempty"`
 	ClusterLocation   string                        `json:"clusterLocation"`
 	ClusterName       string                        `json:"clusterName"`
 	ClusterProjectID  string                        `json:"clusterProjectID,omitempty"`
